@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/customColors.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/ion.rangeSlider.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/index.css"  media="screen,projection"/>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario</title>
+</head>
+
+<body>
+  <video src="img/video.mp4" id="vidFondo"></video>
+
+  <div class="contenedor">
+    <div class="card rowTitulo">
+      <h1>Bienes Intelcost</h1>
+    </div>
+    <div class="colFiltros">
+      <!-- Se elimina etiqueta por inconvenientes con ejecución -->
+      <!--<form action="#" method="post" id="formulario">-->
+        <div class="filtrosContenido">
+          <div class="tituloFiltros">
+            <h5>Filtros</h5>
+          </div>
+          <div class="filtroCiudad input-field">
+            <p><label for="selectCiudad">Ciudad:</label><br></p>
+            <select name="ciudad" id="selectCiudad" class="selectCiudad">
+              <option value="" selected>Elige una ciudad</option>
+            </select>
+          </div>
+          <div class="filtroTipo input-field">
+            <p><label for="selecTipo">Tipo:</label></p>
+            <br>
+            <select name="tipo" id="selectTipo" class="selectTipo">
+              <option value="">Elige un tipo</option>
+            </select>
+          </div>
+          <div class="filtroPrecio">
+            <label for="rangoPrecio">Precio:</label>
+            <input type="text" id="rangoPrecio" name="precio" value="" />
+          </div>
+          <div class="botonField">
+            <input type="submit" class="btn white" value="Buscar" id="submitButton" onclick="GetAvailableProperties()">
+          </div>
+
+          <!-- Sugerido UX -->
+
+          <div class="botonField suggested-container">
+            <h5>Reportes</h5>
+            <p>Generación de reportes en excel aquí:</p>
+            <input type="submit" class="btn white" value="Generar Excel" id="submitButtonExcel" onclick="ReportExcel('filter')">
+          </div>
+        </div>
+      <!-- </form>-->
+    </div>
+    <div id="tabs" style="width: 75%;">
+      <ul>
+        <li><a href="#tabs-1">Bienes disponibles</a></li>
+        <li><a href="#tabs-2">Mis bienes</a></li>
+        <!-- Se agrega tercer sección para los reportes en excel -->
+        <li><a href="#tabs-3">Reportes</a></li>
+      </ul>
+      <div id="tabs-1">
+        <div class="colContenido" id="divResultadosBusqueda">
+          <div class="tituloContenido card" style="justify-content: center;">
+            <h5>Resultados de la búsqueda <span class="number_Properties">0</span>:</h5>
+            <div class="divider"></div>
+            <div class="Inmuebles_disponibles"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="tabs-2" >
+        <div class="colContenido" id="divResultadosBusqueda">
+          <div class="tituloContenido card" style="justify-content: center;">
+            <h5>Bienes guardados <span class="number_MyProperties">0</span>:</h5>
+            <div class="divider"></div>
+            <div class="MyInmuebles"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Se agrega la vista de la tercera pestaña -->
+      
+      <div id="tabs-3" >
+        <div class="colContenido" id="divResultadosBusqueda">
+          <div class="tituloContenido card" style="justify-content: center;">
+            <h5>Exportar reporte:</h5>
+            <div class="divider"></div>
+            <div style="width: 80%;">
+              <div class="text-center">
+                <h3>Filtros</h3>
+              </div>
+              <div class="filtroCiudad input-field">
+                <p><label for="selectCiudad">Ciudad:</label><br></p>
+                <select name="ciudad" id="selectCiudadReport" class="selectCiudad">
+                  <option value="" selected>Elige una ciudad</option>
+                </select>
+              </div>
+              <div class="filtroTipo input-field">
+                <p><label for="selecTipo">Tipo:</label><br></p>
+                <select name="tipo" id="selectTipoReport" class="selectTipo">
+                  <option value="">Elige un tipo</option>
+                </select>
+              </div>
+              <div class="filtroTipo input-field">
+                <input type="submit" class="btn green white-text" value="Generar Excel" id="ExcelButton" onclick="ReportExcel('report')">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    
+    <script type="text/javascript" src="js/ion.rangeSlider.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/buscador.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+      $( document ).ready(function() {
+          $( "#tabs" ).tabs();
+      });
+
+      getCityType();
+    </script>
+  </body>
+  </html>
